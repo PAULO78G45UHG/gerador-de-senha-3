@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VaultKey — Gerador de Senhas de Nível Empresarial</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="app-wrapper">
+    <header class="brand-header">
+      <div class="logo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+        <span>VaultKey <strong>Pro</strong></span>
+      </div>
+      <span class="status-badge"><span class="pulse"></span> Criptografia AES-Ready</span>
+    </header>
+
+    <section class="display-card">
+      <div class="input-wrapper">
+        <input type="text" id="passwordOutput" readonly placeholder="Gerando senha..." aria-label="Senha Gerada">
+        <button id="refreshBtn" class="icon-btn" title="Gerar Nova (Espaço)" aria-label="Regerar">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+        </button>
+      </div>
+
+      <div class="action-bar">
+        <button id="copyBtn" class="btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          <span id="copyBtnText">Copiar Senha</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="analytics-card">
+      <div class="metric-grid">
+        <div class="metric-item">
+          <span class="metric-title">Entropia</span>
+          <span id="entropyValue" class="metric-value">0 bits</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-title">Tempo para Quebra</span>
+          <span id="crackTimeValue" class="metric-value">Instantâneo</span>
+        </div>
+      </div>
+
+      <div class="meter-container">
+        <div class="meter-info">
+          <span id="strengthLabel">Nível de Segurança</span>
+          <span id="strengthScore">Analisando...</span>
+        </div>
+        <div class="meter-bar-bg">
+          <div id="meterBar" class="meter-bar-fill"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="config-card">
+      <div class="config-header">
+        <h3>Parâmetros de Configuração</h3>
+      </div>
+
+      <div class="range-control">
+        <div class="range-meta">
+          <label for="lengthInput">Comprimento da Senha</label>
+          <div class="number-badge">
+            <input type="number" id="lengthNumber" min="8" max="128" value="20">
+          </div>
+        </div>
+        <input type="range" id="lengthRange" min="8" max="128" value="20">
+      </div>
+
+      <div class="options-grid">
+        <label class="toggle-card">
+          <input type="checkbox" id="incUppercase" checked>
+          <span class="toggle-switch"></span>
+          <div class="toggle-text">
+            <strong>Maiúsculas</strong>
+            <small>A-Z</small>
+          </div>
+        </label>
+
+        <label class="toggle-card">
+          <input type="checkbox" id="incLowercase" checked>
+          <span class="toggle-switch"></span>
+          <div class="toggle-text">
+            <strong>Minúsculas</strong>
+            <small>a-z</small>
+          </div>
+        </label>
+
+        <label class="toggle-card">
+          <input type="checkbox" id="incNumbers" checked>
+          <span class="toggle-switch"></span>
+          <div class="toggle-text">
+            <strong>Números</strong>
+            <small>0-9</small>
+          </div>
+        </label>
+
+        <label class="toggle-card">
+          <input type="checkbox" id="incSymbols" checked>
+          <span class="toggle-switch"></span>
+          <div class="toggle-text">
+            <strong>Símbolos</strong>
+            <small>!@#$%^&*</small>
+          </div>
+        </label>
+      </div>
+
+      <div class="advanced-options">
+        <label class="checkbox-inline">
+          <input type="checkbox" id="excludeAmbiguous" checked>
+          <span>Excluir caracteres ambíguos (ex: <code>i, l, 1, L, o, 0, O</code>)</span>
+        </label>
+      </div>
+    </section>
+
+    <footer class="app-footer">
+      <p>Gerado localmente no cliente via Web Crypto API. Nenhum dado é enviado a servidores.</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
